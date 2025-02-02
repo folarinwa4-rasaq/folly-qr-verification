@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    text-transform: capitalize;
+}
+
+header {
+    width: 100%;
+    background-color: #293854;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin-left: 50px;
+}
+
+#reader {
+    width: 300px;
+    height: 250px;
+    border: 1px solid #ccc;
+}
+
+ul {
+    display: flex;
+    margin-left: -100px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+    margin-right: 30px;
+    color: black;
+}
+
+.connect {
+    margin-right: 50px;
+    padding: 15px;
+    color: #fdfff7;
+    background-color: #201f24;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    padding-top: 50px;
+    display: grid;
+    place-content: center;
+}
+
+.qr {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+}
+
+.download {
+    text-align: center;
+}
+
+.download a button {
+    padding: 15px;
+    color: #fdfff7;
+    background-color: #293854;
+    border: none;
+    cursor: pointer;
+}
+
+.scanned-data {
+    display: none;
+}
+
+#scanned {
+    margin-top: 150px;
+}

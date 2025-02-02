@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <header>
+        <h1>QR Verification Project</h1>
+        <ul>
+            <a href="/">
+                <li>home</li>
+            </a>
+            <a href="scanner">
+                <li>verify</li>
+            </a>
+        </ul>
+        <button onclick="join()" class="connect">connect wallet</button>
+    </header>
+    <main>
+        <div id="reader"></div>
+        <p id="scanned-data"></p>
+        <p id="scanned"></p>
+    </main>
+    <script src="/assets/js/ethers.min.js"></script>
+    <script type="module" src="/assets/js/index.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script>
+        async function join() {
+            if (typeof window.ethereum !== undefined) {
+                const account = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+            }
+            try {
+                if (typeof window.ethereum !== undefined) {
+                    const account = await window.ethereum.request({
+                        method: 'eth_requestAccounts'
+                    });
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        };
+
+        window.ethereum.request({
+            method: 'eth_accounts'
+        }).then((accounts) => {
+            if (accounts.length > 0) {
+                document.querySelector('.connect').innerHTML = 'Connected';
+
+                function onScanSuccess(decodedText, decodedResult) {
+                    console.log("Scanned data:", decodedText);
+                    if (decodedText == 'folly') {
+                        document.getElementById('scanned').innerHTML = 'You have been verified';
+                    } else {
+                        document.getElementById('scanned').innerHTML = 'You have not been verified';
+                    }
+                    document.getElementById("scanned-data").innerHTML = decodedText;
+                }
+            }
+        })
+
+        function onScanSuccess(decodedText, decodedResult) {
+            console.log("Scanned data:", decodedText);
+            if (decodedText == 'folly') {
+                document.getElementById('scanned').innerHTML = 'You have been verified';
+            } else {
+                document.getElementById('scanned').innerHTML = 'You have not been verified';
+            }
+            document.getElementById("scanned-data").innerHTML = decodedText;
+        }
+
+        function onScanError(errorMessage) {
+            console.log("Error:", errorMessage);
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", {
+                fps: 10,
+                qrbox: {
+                    width: 250,
+                    height: 250
+                },
+            },
+            false
+        );
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+</body>
+
+</html>
