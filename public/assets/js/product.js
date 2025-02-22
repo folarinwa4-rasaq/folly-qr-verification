@@ -19,6 +19,7 @@ async function join() {
         console.log(e)
     }
 };
+
 window.ethereum.request({
     method: 'eth_accounts'
 }).then((accounts) => {
@@ -27,25 +28,35 @@ window.ethereum.request({
     }
 })
 
-export async function verify() {
-    const productname = document.getElementById('name').value
-    const productbrand = document.getElementById('brand').value
-    const description = document.getElementById('description').value
-    const qrinformation = document.getElementById('qr').value
+async function allProduct() {
     if (typeof window.ethereum !== 'undefined') {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
         const contract = new ethers.Contract(contractAddress, abi, signer)
-        const tx2 = await contract.store(productname, productbrand, description, qrinformation)
-        await tx2.wait()
-        console.log(tx2)
-        alert('Product Stored Successfully!')
-        setTimeout(() => {
-            window.location.href = '/'
-        }, 5000)
+        const tx1 = await contract.allProducts()
+        tx1.forEach((i) => {
+            console.log(i)
+            document.getElementById('prod-main').innerHTML =
+                `<div>
+            <p id="name">name:${i.product_name}</p>
+            <p id="description">description:${i.product_description}</p>
+            <p id="brand">brand:${i[3]}</p>
+        </div>`
+        })
     } else {
-        console.log('no wallet')
+        console.log('Metamask not found')
     }
 }
-const submit = document.getElementById('submit')
-submit.addEventListener('click', verify);
+
+allProduct()
+
+async function buy() {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, abi, signer)
+        const tx1 = await contract.buyProduct()
+    } else {
+        console.log('Metamask not found')
+    }
+}

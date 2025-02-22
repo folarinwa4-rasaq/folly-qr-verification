@@ -70,10 +70,74 @@ main {
     cursor: pointer;
 }
 
-.scanned-data {
-    display: none;
+#scanned-data {
+    margin-top: 180px;
+    height: 50px;
 }
 
-#scanned {
-    margin-top: 150px;
+section {
+    display: grid;
+    place-content: center;
+}
+
+.pls {
+    background-color: #293854;
+    border-width: 2px;
+    padding: 10px 10px 10px 30px;
+    border-color: #201f24;
+    border-style: solid;
+    color: #fdfff7;
+}
+
+#form {
+    border-width: 1px;
+    padding: 10px;
+    width: 400px;
+    height: 300px;
+    border-color: #201f24;
+    border-style: solid;
+    display: grid;
+    place-content: center;
+}
+
+#name,
+#brand,
+#qr,
+#description {
+    width: 250px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+#submit {
+    margin-top: 10px;
+    margin-left: 100px;
+    padding: 8px 15px;
+    background-color: #201f24;
+    color: #fdfff7;
+    border: none;
+}
+
+#submit:hover {
+    cursor: pointer;
+}
+
+#submit:active {
+    opacity: 0.9;
+}
+
+#create {
+    background-color: #201f24;
+    color: #fdfff7;
+    border: none;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+#prod-main {
+    display: grid;
+    place-content: center;
+    grid-column: 1 1 1;
+    row-gap: 30px;
+    column-gap: 30px;
 }

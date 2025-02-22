@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <title>Register Products</title>
+</head>
+
+<body>
+    <header>
+        <h1>QR Verification Project</h1>
+        <ul>
+            <a href="/">
+                <li>home</li>
+            </a>
+            <a href="scanneer">
+                <li>qr</li>
+            </a>
+            <a href="create_products">
+                <li>create product</li>
+            </a>
+        </ul>
+        <button id="connect" class="connect">connect wallet</button>
+    </header>
+    <div class="pls">Please make sure your wallet is connected in order to carry out operations efficiently !</div>
+    <main>
+        <div id="form">
+            <h2>Register Your Product</h2>
+            <form action="/api/form" method="post">
+                <input type="text" id="name" name="productname" placeholder="Product Name Here"><br>
+                <input type="text" id="brand" name="productbrand" placeholder="Product Brand"><br>
+                <input type="text" id="description" name="description" placeholder="Products Description"><br>
+                <input type="text" id="qr" name="qrinformation" placeholder="Product QR/Bar Code Information"><br>
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+    <script src="/assets/js/ethers.min.js"></script>
+    <script type="module" src="/assets/js/index.js"></script>
+</body>
+
+</html>
